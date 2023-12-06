@@ -1,40 +1,58 @@
 {
-  "name": "@totto2727/esm-package",
-  "author": "totto2727 <kaihatu.totto2727@gmail.com>",
+  "name": "esm-package",
+  "author": "hogehoge <hogehoge@example.com>",
   "description": "",
-  "homepage": "https://github.com/totto2727-org/esm-package#readme",
+  "homepage": "",
   "bugs": {
-    "url": "https://github.com/totto2727-org/esm-package/issues"
+    "url": ""
   },
-  "keywords": [],
+  "keywords": [
+    "typescript"
+  ],
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "deploy": "",
-    "build": "bun run build:transpile && bun run build:decolation",
-    "build:transpile": "bun build --outdir dist --target browser --format esm --minify --splitting index.ts",
-    "build:decolation": "tsc --project tsconfig.build.json",
+    "build": "bun run build:transpile && bun run build:esm && bun run build:cjs",
+    "build:transpile": "bun build.mts",
+    "build:esm": "tsc --project tsconfig.build.esm.json",
+    "build:cjs": "tsc --project tsconfig.build.cjs.json",
     "check": "bun run check:type && bun run check:static",
     "check:type": "tsc --noEmit",
-    "check:static": "biome check *.ts *.json",
-    "fix": "biome check --apply-unsafe *.ts *.json",
+    "check:static": "biome check .",
+    "fix": "bun check:static --apply-unsafe",
     "test": "bun test",
-    "precommit": "bun run check:type && bun run fix && bun run test && bun run build"
+    "precommit": "bun run check:type && bun run fix && bun run test && bun run build",
+    "prepublish": "attw --pack ."
   },
-  "type": "module",
-  "files": ["dist"],
+  "files": [
+    "src",
+    "dist",
+    "package.json",
+    "tsconfig.json",
+    "LICENSE"
+  ],
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/index.js",
-        "types": "./dist/types/index.d.ts"
+        "types": "./dist/import/index.d.mts",
+        "default": "./dist/import/index.mjs"
+      },
+      "require": {
+        "types": "./dist/require/index.d.cts",
+        "default": "./dist/require/index.cjs"
       }
     }
   },
-  "dependencies": {},
   "devDependencies": {
-    "@biomejs/biome": "1.1.2",
-    "bun-types": "^1.0.1",
-    "typescript": "5.2.2"
+    "@arethetypeswrong/cli": "^0.13.3",
+    "@biomejs/biome": "1.4.1",
+    "@changesets/cli": "^2.27.1",
+    "bun-types": "^1.0.15",
+    "esbuild": "^0.19.8",
+    "typescript": "5.3.2"
+  },
+  "dependencies": {
+    "biome": ""
   }
 }

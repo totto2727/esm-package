@@ -1,7 +1,8 @@
 import { describe, expect, test } from "bun:test";
+import { fn } from "./index.mts";
 
 describe("describe", () => {
   test("test", () => {
-    expect(1).toBe(1);
+    expect(fn()).toBe(1);
   });
 });
