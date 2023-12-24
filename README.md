@@ -2,6 +2,8 @@
 
 # 概要
 
+[テンプレートの解説](https://qiita.com/totto2727/items/bf6fa2787a8ede5f56c1)
+
 ## 他のパッケージとの差別点
 
 # インストール
