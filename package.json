@@ -13,17 +13,18 @@
   "version": "0.1.0",
   "scripts": {
     "deploy": "",
-    "build": "bun run build:transpile && bun run build:esm && bun run build:cjs",
+    "build": "run-z build:transpile,build:esm,build:cjs",
     "build:transpile": "bun build.mts",
     "build:esm": "tsc --project tsconfig.build.esm.json",
     "build:cjs": "tsc --project tsconfig.build.cjs.json",
-    "check": "bun run check:type && bun run check:static",
+    "check": "run-z check:type,check:static",
     "check:type": "tsc --noEmit",
     "check:static": "biome check .",
-    "fix": "bun check:static --apply-unsafe",
+    "fix": "$npm_execpath run check:static --apply-unsafe",
     "test": "bun test",
-    "precommit": "bun run check:type && bun run fix && bun run test && bun run build",
-    "prepublish": "attw --pack ."
+    "precommit": "run-z check:type fix test build",
+    "prepublish": "attw --pack .",
+    "run-z": "run-z"
   },
   "files": [
     "src",
@@ -50,9 +51,7 @@
     "@changesets/cli": "^2.27.1",
     "bun-types": "^1.0.15",
     "esbuild": "^0.19.8",
+    "run-z": "^2.0.0",
     "typescript": "5.3.3"
-  },
-  "dependencies": {
-    "biome": ""
   }
 }
