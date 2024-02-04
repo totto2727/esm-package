@@ -1,8 +1,24 @@
+[テンプレートの解説](https://qiita.com/totto2727/items/bf6fa2787a8ede5f56c1)
+
+# テンプレートコピー後にやるべきこと
+
+完了次第削除してください。
+
+## リポジトリの設定
+
+- [ ] stagingブランチをベースブランチにする
+- [ ] Branch Protectionの設定を行う
+  - TODO: 設定
+- [ ] Renovate Botの対象に含める
+
+## パッケージの設定
+
+- [ ] README.mdを修正する
+- [ ] pakcage.jsonのメタ情報を修正する
+
 # esm-package
 
 # 概要
-
-[テンプレートの解説](https://qiita.com/totto2727/items/bf6fa2787a8ede5f56c1)
 
 ## 他のパッケージとの差別点
 
